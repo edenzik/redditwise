@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+        <head>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="description" content="A StatNLP projet by Eden Zik.">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <title>Redditwise</title>
+
+
+                <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+                <!--
+                        <link rel="canonical" href="http://www.example.com/">
+                -->
+
+                <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+                <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+                <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+                <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.light_blue-red.min.css" />
+                <link rel="stylesheet" href="css/style.css">
+        </head>
+        <body>
+
+                <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-cell--9-col-tablet">
+                                <div id="intro-card" class="mdl-card mdl-shadow--2dp">
+                                        <div class="mdl-card__title">
+                                                <h2 class="mdl-card__title-text">Welcome</h2>
+                                        </div>
+                                        <div class="mdl-card__supporting-text">
+                                                Reddit is a social networking site for everybody. Use this tool to see how your next comment might rank in populairity, instead of guessing.
+                                        </div>
+                                        <div class="mdl-card__actions mdl-card--border">
+                                                <a id="get-started-button" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                                        Get Started
+                                                </a>
+                                        </div>
+                                </div>
+
+                        </div>
+
+                </div>
+                <form id="search-box" action="#">
+                        <div id="search-element" class="mdl-textfield mdl-js-textfield">
+                                <textarea id="search-textarea" class="mdl-textfield__input" type="text" id="comment-input"></textarea>
+                                <label id="search-label" class="mdl-textfield__label" for="comment-input">Enter your comment here...</label>
+                        </div><br>
+                        <button id="submit-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                                Rate
+                        </button>
+                        <div id="search-loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+                </form>
+                <script src="js/scripts.js"></script>
+        </body>
+</html>
+
