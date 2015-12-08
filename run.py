@@ -33,6 +33,7 @@ def api():
     process = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True,executable='/bin/bash')
 
     output = process.stdout.read()
+    print output
 
     good = float(output.split("\t")[4].strip())*100
     return str(good)
