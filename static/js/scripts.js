@@ -1,32 +1,86 @@
-console.log("hy");
 $('#submit-button').hide();
+$('#search-box').hide();
+$('#comment-box').hide();
+$('#parent-comment-box').hide();
 $('#search-textarea').focus(function(){
         $('#submit-button').fadeIn(500);
-        console.log("fired");
-});
-$('#search-textarea').focusout(function(){
-        $('#submit-button').fadeOut(500);
-        console.log("fired");
+        $('#search-label').css('visibility', 'hidden');
 });
 
+var g = new JustGage({
+        id: "gauge",
+        value: 0,
+        min: 0,
+        max: 100,
+        levelColors: [
+                "#FF0000",
+                "#FFFF00",
+                "#00FF00"
+        ],
+        title: "Comment Score"
+});
+$('#gauge').hide();
 
-$('#submit-button').click(function(){
-        $('#submit-button').hide();
-        $('#search-textarea').off("focus");
-        $('#search-textarea').prop("disabled", 'disabled');
+var reddit_comment_content = {comment:"",parent_comment:""};
+var comment_input = function(){
+        reddit_comment_content.comment = $('#search-textarea').val();
+        $('#comment-content').html($('#search-textarea').val());
+        $('#search-textarea').val("");
+        $('#comment-box').fadeIn(800);
+        $('#button-icon').text("done");
+        $('#search-textarea').val("");
+        $('#search-label').html("What are you respoding to? (parent comment)");
+        $('#search-label').css('visibility', 'visible');
+        $('#search-label').hide();
+        $('#search-label').fadeIn(800);
+        $('#submit-button').unbind();
+        $('#submit-button').click(parent_input);
 
+}
 
+var parent_input = function(){
+        reddit_comment_content.parent_comment = $('#search-textarea').val();
+        $('#parent-comment-box').fadeIn(800);
+        $('#button-icon').text("done");
+        $('#submit-button').unbind();
 
-        $('#search-loading').fadeIn(800);
-        $.post( "api", {content:$('#search-textarea').val()},function( data ) {
-                $('#search-box').fadeOut(800);
-                $('.mdl-grid').fadeOut(800);
+        $('#parent-comment-content').html($('#search-textarea').val());
+        $('#search-textarea').unbind();
+        $('#search-textarea').attr("disabled", "disabled");
+        $('#submit-button').fadeOut(400,function(){
+                $('#search-label').css('visibility', 'hidden');
+
+                $('#search-loading').fadeIn(800);
         });
-});
+        $.post( "api", reddit_comment_content,function( data ) {
+
+
+
+                g.refresh(data);
+                $('#button-icon').text("cached");
+                $('#search-loading').hide();
+                $('#submit-button').fadeIn(800);
+                $('#submit-button').unbind();
+
+                $('#submit-button').click(function(){//ugly reload page logic
+                        $.ajax({
+                                url: "",
+                                context: document.body,
+                                success: function(s,x){
+                                        $(this).html(s);
+                                }
+                        });
+                });
+
+
+        });
+}
+
+
+$('#submit-button').click(comment_input);
 
 $('#get-started-button').click(function(){
-
-        $('#search-box').effect( "shake" );
-
-
+        $('#intro-card').fadeOut(800);
+        $('#gauge').fadeIn(800);
+        $('#search-box').fadeIn(800);
 });
