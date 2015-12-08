@@ -58,10 +58,9 @@ var parent_input = function(){
 
                 g.refresh(data);
                 $('#button-icon').text("cached");
-                $('#search-loading').fadeOut(800,function(){
+                $('#search-loading').css('visibility','hidden');
                         
-                        $('#submit-button').fadeIn(800);
-                });
+                $('#submit-button').fadeIn(800);
                 $('#submit-button').unbind();
 
                 $('#submit-button').click(function(){//ugly reload page logic
