@@ -4,7 +4,6 @@ import random
 import time
 from subprocess import Popen, PIPE, STDOUT
 import os
-from reddit_vote_predictor import RedditComment
 app = Flask(__name__)
 
 @app.route("/<path>")
